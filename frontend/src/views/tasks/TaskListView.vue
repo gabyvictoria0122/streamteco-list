@@ -12,7 +12,7 @@
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
-        <task :task="item" />
+        <task :task="item" @remove-task="deleteTask"  />
       </v-col>
     </v-row>
   </v-container>
@@ -52,6 +52,16 @@ export default {
       this.loading = true
       TasksApi.addNewTask(task.title).then((task) => {
         this.appStore.showSnackbar(`Nova tarefa adicionada #${task.id}`)
+        this.getTasks()
+        this.loading = false
+        console.log("oi")
+      })
+    },
+    deleteTask(task) {
+      this.loading = true
+      TasksApi.deleteTask(task.task).then((t) => {
+        console.log(t)
+        this.appStore.showSnackbar(`Tarefa deletada #${t.todo_id}`)
         this.getTasks()
         this.loading = false
         console.log("oi")
