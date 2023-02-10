@@ -3,10 +3,15 @@
     <v-card-text>
       <div>#{{ task.id }}</div>
       <p class="ma-0 pa-0 text-h5 text--primary">
-        {{ task.description }}
+        {{ task.description }}  
       </p>
-    </v-card-text>
-  </v-card>
+
+      <v-icon aria-hidden="false" @click="deleteTask">
+        mdi-delete
+      </v-icon>
+      
+         </v-card-text>
+          </v-card>
 </template>
 
 <script>
@@ -19,6 +24,15 @@ export default {
       roger: "usalinter",
     },
   },
+  emits: ["removeTask"],
   data: () => ({}),
+  methods: {
+    deleteTask() {
+      this.$emit("removeTask", {
+        task: this.task.id,
+      })
+      this.title = ""
+    }
+  }
 }
 </script>
