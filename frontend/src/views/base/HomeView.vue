@@ -1,38 +1,28 @@
-<template>
+<template class="light-green accent-3">
   <v-container class="fill-height">
     <v-responsive class="d-flex align-center text-center fill-height">
-      <v-img contain height="240" src="@/assets/logo.svg" />
-      <blockquote class="blockquote text-h5">
-        &#8220;Primeiro, resolva o problema. Depois, escreva o código.&#8221;
-        <footer>
-          <small>
-            <em>&mdash; John Johnson &mdash;</em>
-          </small>
-        </footer>
-      </blockquote>
-
-      <div class="text-body-1 mb-n1 pt-4">Bem-vindo ao template</div>
-      <h1 class="text-h2 font-weight-bold">Djàvue</h1>
-      <code>Vue3 + Vuetify + Vite</code>
-
+      <v-img contain height="240" src="@/assets/play-button-streamteco-list.webp" />
+      <div class="text-body-1 mb-n1 pt-4">Bem-vindo ao seu To Do List Streaming</div>
+      <h1 class="text-h2 font-weight-bold">Streamteco List</h1>
       <div class="py-6" />
 
       <v-row class="d-flex align-center justify-center">
         <v-col cols="auto">
           <v-btn
-            color="primary"
+            color=""
             :to="{ name: 'base-getstarted' }"
             min-width="228"
             rel="noopener noreferrer"
             size="x-large"
             variant="flat"
             class="my-4">
-            <v-icon icon="mdi-speedometer" size="large" start />
-            Get Started
+            <v-icon icon="mdi-checkbox-marked-circle" size="large" start />
+            inscreva-se
           </v-btn>
+          
           <v-btn
             v-if="!loggedUser"
-            color="primary"
+            color="purple accent-1"
             min-width="228"
             rel="noopener noreferrer"
             size="x-large"
