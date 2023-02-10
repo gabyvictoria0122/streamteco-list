@@ -26,7 +26,7 @@ export default {
     title: {
       type: String,
       required: false,
-      default: "MyApp",
+      default: "Streamteco List",
     },
     theme: {
       type: String,
