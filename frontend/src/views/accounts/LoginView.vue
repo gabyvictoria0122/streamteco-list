@@ -77,7 +77,7 @@ export default {
       if (response.authenticated) {
         this.saveLoggedUser(response.user)
         this.appStore.showSnackbar("Usuário já logado", "warning")
-        this.showTasks()
+        this.showFilmes()
       }
     })
   },
@@ -91,7 +91,7 @@ export default {
             return
           }
           this.saveLoggedUser(response.user)
-          this.showTasks()
+          this.showFilmes()
         })
         .finally(() => {
           this.loading = false
@@ -105,9 +105,9 @@ export default {
         console.log("logged")
       }
     },
-    showTasks() {
-      this.$router.push({ name: "tasks-list" })
-      console.log("--> tasks")
+    showFilmes() {
+      this.$router.push({ name: "filmes-list" })
+      console.log("--> filmes")
     },
   },
 }

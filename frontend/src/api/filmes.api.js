@@ -2,10 +2,10 @@ import api from "./config.js"
 import apiHelpers from "./helpers.js"
 
 export default {
-  getTasks: () => {
+  getFilmes: () => {
     return new Promise((resolve, reject) => {
       api
-        .get("/api/tasks/list")
+        .get("/api/filmes/list")
         .then((response) => {
           return resolve(response.data)
         })
@@ -14,10 +14,10 @@ export default {
         })
     })
   },
-  addNewTask: (description) => {
+  addNewFilmes: (description) => {
     return new Promise((resolve, reject) => {
       api
-        .post("/api/tasks/add", apiHelpers.dataToForm({ description }))
+        .post("/api/filmes/add", apiHelpers.dataToForm({ description }))
         .then((response) => {
           return resolve(response.data)
         })
@@ -26,10 +26,10 @@ export default {
         })
     })
   },
-  deleteTask: (taskId) => {
+  deleteFilmes: (filmesId) => {
     return new Promise((resolve, reject) => {
       api
-        .post("/api/tasks/delete", apiHelpers.dataToForm({ taskId }))
+        .post("/api/filmes/delete", apiHelpers.dataToForm({ filmesId }))
         .then((response) => {
           return resolve(response.data)
         })
