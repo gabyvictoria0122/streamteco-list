@@ -106,8 +106,8 @@ export default {
       }
     },
     showTasks() {
-      this.$router.push({ name: "tasks-list" })
-      console.log("--> tasks")
+      this.$router.push({ name: "filmes-list" })
+      console.log("--> filmes")
     },
   },
 }
