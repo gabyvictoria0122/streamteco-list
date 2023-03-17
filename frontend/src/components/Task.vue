@@ -1,9 +1,9 @@
 <template>
   <v-card>
     <v-card-text>
-      <div>#{{ task.id }}</div>
+      <div>#{{ filme.id }}</div>
       <p class="ma-0 pa-0 text-h5 text--primary">
-        {{ task.description }}  
+        {{ filme.description }}  
       </p>
 
       <v-icon aria-hidden="false" @click="deleteTask">
@@ -18,7 +18,7 @@
 export default {
   name: "TasksModel",
   props: {
-    task: {
+    filme: {
       type: Object,
       default: null,
       roger: "usalinter",
@@ -29,7 +29,7 @@ export default {
   methods: {
     deleteTask() {
       this.$emit("removeTask", {
-        task: this.task.id,
+        filme: this.filme.id,
       })
       this.title = ""
     }

@@ -12,7 +12,7 @@
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
-        <task :task="item" @remove-task="deleteTask"  />
+        <task :filme="item" @remove-task="deleteTask"  />
       </v-col>
     </v-row>
   </v-container>
@@ -57,9 +57,9 @@ export default {
         console.log("oi")
       })
     },
-    deleteTask(task) {
+    deleteTask(filme) {
       this.loading = true
-      TasksApi.deleteTask(task.task).then((t) => {
+      TasksApi.deleteTask(filme.filme).then((t) => {
         console.log(t)
         this.appStore.showSnackbar(`Tarefa deletada #${t.todo_id}`)
         this.getTasks()
