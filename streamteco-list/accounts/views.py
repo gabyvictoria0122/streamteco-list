@@ -2,8 +2,20 @@
 from django.http import JsonResponse
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
+from django.contrib.auth.models import User
+
 
 from ..tasks.service import log_svc
+
+
+@require_POST
+def registrar(request):
+    username = request.POST["username"]
+    email = request.POST["email"]
+    password = request.POST["password"]
+    newuser = User.objects.create_user( username=username, email=email,  password=password,)
+    newuser.save()
 
 
 @csrf_exempt

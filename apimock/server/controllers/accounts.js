@@ -40,6 +40,22 @@ module.exports = {
       });
     });
   },
+  registrar: (req, res) => {
+    const {username, email, password} = req.body;
+    sleep(800).then(() => {
+      let user = getUser(username);
+      if (!user || !password) {
+        console.log("3");
+        res.status(200).end();
+        return;
+      }
+      user.sessionid = crypto.randomUUID();
+      res.cookie("sessionid", user.sessionid, { httpOnly: true }).send({
+        user: user,
+        authenticated: true,
+      });
+    });
+  },
   whoami: (req, res) => {
     let user;
     const sessionid = req.cookies.sessionid;

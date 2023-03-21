@@ -10,7 +10,7 @@
         <v-col cols="auto">
           <v-btn
             color=""
-            :to="{ name: 'base-getstarted' }"
+            :to="{ name: 'accounts-registrar' }"
             min-width="228"
             rel="noopener noreferrer"
             size="x-large"

@@ -14,6 +14,18 @@ export default {
         })
     })
   },
+  registrar: () => {
+    return new Promise((resolve, reject) => {
+      api
+        .get("/api/accounts/registrar")
+        .then((response) => {
+          return resolve(response.data)
+        })
+        .catch((error) => {
+          return reject(error)
+        })
+    })
+  },
   login: (username, password) => {
     return new Promise((resolve, reject) => {
       api

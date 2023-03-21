@@ -30,6 +30,7 @@ app.get("dapau", base.dapau);
 // ACCOUNTS
 app.post("/api/accounts/login", accounts.login);
 app.post("/api/accounts/logout", accounts.logout);
+app.post("/api/accounts/registrar", accounts.registrar);
 app.get("/api/accounts/whoami", accounts.whoami);
 
 // TASKS
