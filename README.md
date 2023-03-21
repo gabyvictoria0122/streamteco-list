@@ -17,4 +17,45 @@ O projeto atual trata-se de um To Do List, com o CRUD (Create, Read, Update, Del
 
 # Setup do Projeto 🛠️
 
+### Passo 1
 
+```
+$ cd mytodolist
+# Para criar os containers
+$ docker compose build
+# Para iniciar os containers
+$ docker compose up -d backend frontend
+
+# Entrando no container backend 
+$ docker-compose exec backend ./manage.py createsuperuser
+```
+
+### Passo 2
+
+Para preparar o ambiente para que seja possível evoluir o frontend, dado que algumas pastas foram geradas pelo processo de build do docker, vamos precisar fazer alguns ajustes:
+
+```
+# Mudar o dono da pasta de root para o seu usuário
+$ sudo chown 1000:1000 -Rf frontend/
+$ cd frontend
+$ npm install
+
+# Para garantir que tudo está funcionando, o comando abaixo tem que rodar sem dar erro:
+$ npm run lint
+  > frontend@1.0.0 lint /home/user1/workspace/mytodolist/frontend
+  > npm run lint:js
+  > frontend@1.0.0 lint:js /home/user1/workspace/mytodolist/frontend
+  > eslint --ext ".js,.vue" --ignore-path .gitignore .
+
+```
+
+
+```
+# Para parar todos os containers
+$ docker-compose down
+```
+
+Para acessar os serviços, utilize as URLs abaixo:
+
+- `http://localhost` para acessar o frontend
+- `http://localhost/api` para acessar diretamente alguma rota da API MOCK
