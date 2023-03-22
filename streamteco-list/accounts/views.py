@@ -1,4 +1,5 @@
 # coding: utf-8
+import json
 from django.http import JsonResponse
 from django.contrib import auth
 from django.views.decorators.csrf import csrf_exempt
@@ -10,12 +11,30 @@ from ..tasks.service import log_svc
 
 
 @require_POST
+@csrf_exempt
 def registrar(request):
-    username = request.POST["username"]
-    email = request.POST["email"]
-    password = request.POST["password"]
-    newuser = User.objects.create_user( username=username, email=email,  password=password,)
-    newuser.save()
+    if request.method == 'POST':
+        user_input = json.loads(request.body)
+        username = user_input.get("username")
+        email = user_input.get("email")
+        password = user_input.get("password")
+        #easter egg {se voce leu até aqui, bora comer pastel}
+        # Verificar se todos os dados foram preenchidos
+        if not username or not email or not password:
+            return JsonResponse({'error': 'Todos os dados são obrigatórios.'})
+
+        # bisu se o email já está em uso
+        if User.objects.filter(email=email).exists():
+            return JsonResponse({'error': 'Email já está sendo usado.'})
+        user = User.objects.create_user(
+            username=username,
+            email=email,
+            password= password
+        )
+        user.save()
+        return JsonResponse({'success': 'Usuário criado com sucesso.'})
+    else:
+        return JsonResponse({'error': 'Metodo não suportado.'})
 
 
 @csrf_exempt

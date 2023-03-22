@@ -1,6 +1,7 @@
 import api from "./config.js"
 import apiHelpers from "./helpers.js"
 
+
 export default {
   whoami: () => {
     return new Promise((resolve, reject) => {
@@ -14,10 +15,14 @@ export default {
         })
     })
   },
-  registrar: () => {
+  registrar: (username, email, password) => {
     return new Promise((resolve, reject) => {
       api
-        .get("/api/accounts/registrar")
+        .post("/api/accounts/registrar", {
+        username: username,
+        email: email,
+        password: password,
+        })
         .then((response) => {
           return resolve(response.data)
         })

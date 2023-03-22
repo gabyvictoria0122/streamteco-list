@@ -94,12 +94,16 @@ export default {
       AccountsApi.registrar(this.username, this.email, this.password)
         .then((response) => {
           if (!response) {
-            this.appStore.showSnackbar("Usuário ou senha invalida", "danger")
+            this.appStore.showSnackbar("Erro ao registrar usuario", responseError)
             return
+          } else if (response.success) {
+            this.$router.push({ name: "accounts-login" })
+            console.log("Usuário registrado com sucesso.")
           }
-          this.saveLoggedUser(response.user)
-          this.showTasks()
         })
+        .catch((error) => {
+            console.error("Erro ao registrar usuário:", error)
+          })
     },
     saveLoggedUser(user) {
       this.error = !user
