@@ -35,7 +35,7 @@
             block
             size="large"
             rounded="pill"
-            color="primary"
+            color="purple accent-1"
             append-icon="mdi-chevron-right"
             @click="registrar">
             Continue
@@ -45,7 +45,7 @@
             block
             size="large"
             rounded="pill"
-            color="primary"
+            color="purple accent-1"
             variant="outlined"
             :to="{ name: 'base-home' }">
             Voltar
