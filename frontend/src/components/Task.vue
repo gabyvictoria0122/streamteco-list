@@ -1,9 +1,9 @@
 <template>
   <v-card >
     <v-card-text class="d-flex flex-row mb-6">
-      <input type="checkbox">
-      <p class="ml-3 text-h5 text--primary">
-        {{ task.description }}  
+      <input type="checkbox" v-model="check">
+      <p class="ml-3 text-h5 text--primary" :class="{'text-decoration-line-through':check}">
+        {{ task.description }}
       </p>
 
       <v-icon class="d-flex align-end flex-column" aria-hidden="false" @click="deleteTask">
@@ -25,7 +25,7 @@ export default {
     },
   },
   emits: ["removeTask"],
-  data: () => ({}),
+  data: () => ({check: false,}),
   methods: {
     deleteTask() {
       this.$emit("removeTask", {
