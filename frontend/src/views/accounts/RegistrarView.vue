@@ -8,6 +8,7 @@
           <v-text-field
             v-model="username"
             label="Username"
+            :rules="nameRules"
             prepend-inner-icon="mdi-home-account"
             variant="outlined"
             required
@@ -16,6 +17,7 @@
           <v-text-field
             v-model="email"
             label="E-Mail"
+            :rules="emailRules"
             prepend-inner-icon="mdi-email-fast-outline"
             variant="outlined"
             required
@@ -25,6 +27,7 @@
             v-model="password"
             type="password"
             label="Senha"
+            :rules="passwordRules"
             prepend-inner-icon="mdi-key-outline"
             variant="outlined"
             required
@@ -74,6 +77,12 @@ export default {
       email:"",
       username: "",
       password: "",
+      nameRules: [(v) => !!v || "Nome é obrigatório"],
+      emailRules: [
+      (email) => !!email || "Email é obrigatório",
+      (v) => /.+@.+\..+/.test(v) || "Email inválido",
+      ],
+      passwordRules: [(v) => !!v || "Senha é obrigatória"],
       error: false,
       visible: false,
     }
