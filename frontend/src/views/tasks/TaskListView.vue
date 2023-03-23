@@ -15,7 +15,7 @@
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
-        <task :task="item" @remove-task="deleteTask"  />
+        <task :task="item" @remove-task="deleteTask" @last-item="goEnd"/>
       </v-col>
     </v-row>
   </v-container>
@@ -70,6 +70,14 @@ export default {
         this.loading = false
         console.log("oi")
       })
+    },
+    goEnd(task) {
+      TasksApi.getTasks().then((data) => {
+        this.items = data.todos
+        this.loading = false
+      })
+      const ultimo = this.items.splice(task.id, 1)[0];
+      this.items.push(ultimo);
     },
   },
 }
