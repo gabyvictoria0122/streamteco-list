@@ -1,16 +1,12 @@
 <template>
   <div>
-    <v-card>
-      <v-card-text>
-        <v-text-field
-          v-model="title"
-          :label="formLabel"
-          required
-          outlined
-          append-icon="fa-pen"
-          @keyup.enter="addNewTask" />
-      </v-card-text>
-    </v-card>
+    <v-text-field
+      v-model="title"
+      :label="formLabel"
+      required
+      outlined
+      append-icon="fa-pen"
+      @keyup.enter="addNewTask" />
   </div>
 </template>
 

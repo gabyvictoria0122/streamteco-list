@@ -1,9 +1,7 @@
 <template>
   <v-app-bar>
     <v-app-bar-title>{{ title }}</v-app-bar-title>
-    <template #append>
       <v-btn icon="mdi-heart" :to="{ name: 'base-home' }"></v-btn>
-      <v-btn icon="mdi-magnify"></v-btn>
       <v-btn
         :prepend-icon="theme === 'light' ? 'mdi-weather-sunny' : 'mdi-weather-night'"
         @click.stop="themeClick"></v-btn>
@@ -16,7 +14,6 @@
           </v-list>
         </v-menu>
       </v-btn>
-    </template>
   </v-app-bar>
 </template>
 
@@ -36,12 +33,29 @@ export default {
   },
   emits: ["themeClick"],
   data: () => {
-    return {}
+    return {
+      userloading: false,
+      moviesearch: [],
+      }
   },
   methods: {
+    getTasks() {
+      console.log("hum?")
+      this.loading = true
+      TasksApi.getTasks().then((data) => {
+        this.moviesearch = data.todos
+        this.loading = false
+      })
+    },
     themeClick() {
       this.$emit("themeClick")
     },
   },
+  watch: {
+      moviessearch () {
+        console.log("hum?")
+        this.getTasks()
+      },
+  }
 }
 </script>

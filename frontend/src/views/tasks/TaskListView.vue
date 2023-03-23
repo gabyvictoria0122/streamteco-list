@@ -5,10 +5,13 @@
         <v-card>
           <v-card-title class="headline"> Tasks </v-card-title>
         </v-card>
+        
       </v-col>
-
-      <v-col cols="12">
+      <v-col cols="6">
         <task-form :form-label="'Nova Tarefa'" @new-task="addNewTask" />
+      </v-col>
+      <v-col cols="6">
+        <search-movies/>
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
@@ -23,10 +26,11 @@ import { useAppStore } from "@/stores/appStore"
 import TasksApi from "@/api/tasks.api.js"
 import Task from "@/components/Task.vue"
 import TaskForm from "@/components/TaskForm.vue"
+import SearchMovies from "@/components/Search.vue"
 
 export default {
   name: "TasksList",
-  components: { Task, TaskForm },
+  components: { Task, TaskForm, SearchMovies },
   setup() {
     const appStore = useAppStore()
     return { appStore }
