@@ -11,7 +11,7 @@
         <task-form :form-label="'Nova Tarefa'" @new-task="addNewTask" />
       </v-col>
       <v-col cols="6">
-        <search-movies/>
+        <search-movies @search-move="movieSearch"/>
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
@@ -53,6 +53,16 @@ export default {
       })
     },
     addNewTask(task) {
+      this.loading = true
+      TasksApi.getTasks().then((data) => {
+        let moviesearch = data.todos
+        for(var title of pega){
+          this.moviesearch.push(title.description )
+        }
+        this.loading = false
+      })
+    },
+    movieSearch(task) {
       this.loading = true
       TasksApi.addNewTask(task.title).then((task) => {
         this.appStore.showSnackbar(`Nova tarefa adicionada #${task.id}`)

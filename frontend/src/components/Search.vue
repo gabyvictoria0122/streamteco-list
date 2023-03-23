@@ -25,6 +25,7 @@ export default {
     const appStore = useAppStore()
     return { appStore }
   },
+  emits: ["searchMove"],
   data() {
     return {
       loading: false,
@@ -38,9 +39,18 @@ export default {
     getTasks() {
       this.loading = true
       TasksApi.getTasks().then((data) => {
-        this.moviesearch = data.todos
+        let pega = data.todos
+        for(var title of pega){
+          this.moviesearch.push(title.description )
+        }
         this.loading = false
       })
+    },
+    searchMovies() {
+      this.$emit("searchMove", {
+        title: this.title,
+      })
+      this.title = ""
     },
   },
 }
