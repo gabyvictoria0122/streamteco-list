@@ -1,7 +1,7 @@
 <template>
   <v-card >
     <v-card-text class="d-flex flex-row mb-6">
-      <input type="checkbox" v-model="check">
+      <input type="checkbox" @click="last" v-model="check">
       <p class="ml-3 text-h5 text--primary" :class="{'text-decoration-line-through':check}">
         {{ task.description }}
       </p>
@@ -24,9 +24,16 @@ export default {
       roger: "usalinter",
     },
   },
-  emits: ["removeTask"],
+  emits: ["removeTask", "lastItem"],
   data: () => ({check: false,}),
   methods: {
+    last(){
+      if(!this.check){
+        this.$emit("lastItem", {
+          task: this.task.id,
+      })
+      }
+    },
     deleteTask() {
       this.$emit("removeTask", {
         task: this.task.id,
