@@ -10,7 +10,7 @@
           v-model="dialog"
         >
           <template v-slot:activator="{ props }">
-            <v-icon v-bind="props">
+            <v-icon class="pl-4 " v-bind="props">
             mdi-pencil
             </v-icon>
           </template>
@@ -40,7 +40,7 @@
           </v-card>
         </v-dialog>
       </div>
-      <v-icon  @click="deleteTask">
+      <v-icon class="pa-2 ml-auto" outlined tile @click="deleteTask">
         mdi-delete
       </v-icon>
     </v-card-text>
