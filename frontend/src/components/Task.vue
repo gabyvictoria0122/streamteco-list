@@ -1,17 +1,15 @@
 <template>
   <v-card>
-    <v-card-text>
-      <div>#{{ task.id }}</div>
-      <p class="ma-0 pa-0 text-h5 text--primary">
-        {{ task.description }}  
+    <v-card-text  class="d-flex flex-row mb-6">
+      <input type="checkbox" @click="last" v-model="check">
+      <p class="ml-3 text-h5 text--primary" :class="{'text-decoration-line-through':check}">
+        {{ task.description }}
       </p>
-
-      <v-icon aria-hidden="false" @click="deleteTask">
+      <v-icon  @click="deleteTask">
         mdi-delete
       </v-icon>
-      
-         </v-card-text>
-          </v-card>
+    </v-card-text>
+  </v-card>
 </template>
 
 <script>
@@ -25,7 +23,7 @@ export default {
     },
   },
   emits: ["removeTask"],
-  data: () => ({}),
+  data: () => ({check: false,}),
   methods: {
     deleteTask() {
       this.$emit("removeTask", {
