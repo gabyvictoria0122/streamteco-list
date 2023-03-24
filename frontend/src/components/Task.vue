@@ -61,14 +61,15 @@ export default {
   data: () => ({
     check: false, 
     dialog: false,
+    edit:"",
     }),
   methods: {
     editTask() {
       this.dialog = false
       this.$emit("editarTask", {
-        title: this.title,
+        edit: this.task.description,
       })
-      this.title = ""
+      this.edit = ""
     },
     deleteTask() {
       this.$emit("removeTask", {

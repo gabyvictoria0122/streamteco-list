@@ -12,7 +12,7 @@
       </v-col>
 
       <v-col v-for="item in items" :key="item.id" cols="12">
-        <task :task="item"  @editar-task="editTask" @remove-task="deleteTask"  />
+        <task :task="item"  @edit-task="editTask" @remove-task="deleteTask"  />
       </v-col>
     </v-row>
   </v-container>
@@ -58,9 +58,8 @@ export default {
       })
     },
     editTask(task) {
-      console.log("edit", task)
       this.loading = true
-      TasksApi.editTask(task.id).then((task) => {
+      TasksApi.addNewTask(task.title).then((task) => {
         this.appStore.showSnackbar(`Tarefa Editada #${task.id}`)
         this.getTasks()
         this.loading = false
