@@ -14,6 +14,10 @@ def add_todo(request):
     todo = todo_svc.add_todo(request.POST["description"])
     return JsonResponse(todo)
 
+def edit_todo(request, id):
+    get_todo = todo_svc.edit_todo(request.POST["taskId"])
+    return JsonResponse(get_todo)
+
 
 @ajax_login_required
 def list_todos(request):

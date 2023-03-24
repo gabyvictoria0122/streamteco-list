@@ -26,6 +26,18 @@ export default {
         })
     })
   },
+  editTask: (taskId, description) => {
+    return new Promise((resolve, reject) => {
+      api
+        .put(`/api/tasks/edit/${taskId}`, apiHelpers.dataToForm({ description }))
+        .then((response) => {
+          return resolve(response.data)
+        })
+        .catch((error) => {
+          return reject(error)
+        })
+    })
+  },
   deleteTask: (taskId) => {
     return new Promise((resolve, reject) => {
       api

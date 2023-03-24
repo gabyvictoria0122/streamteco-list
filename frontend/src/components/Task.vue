@@ -10,7 +10,7 @@
           v-model="dialog"
         >
           <template v-slot:activator="{ props }">
-            <v-icon v-bind="props"  @click="editTask(task.id)">
+            <v-icon v-bind="props">
             mdi-pencil
             </v-icon>
           </template>
@@ -31,7 +31,7 @@
             </v-card-text>
             <div class="d-flex justify-center mb-6">
               <v-card-actions>
-                <v-btn color="purple accent-1" block @click="dialog = false">Editar</v-btn>
+                <v-btn color="purple accent-1" block @click="editTask">Editar</v-btn>
               </v-card-actions>
               <v-card-actions>
                 <v-btn color="purple accent-1" block @click="dialog = false">Close</v-btn>
@@ -57,14 +57,18 @@ export default {
       roger: "usalinter",
     },
   },
-  emits: ["removeTask"],
+  emits: ["removeTask", "editarTask"],
   data: () => ({
     check: false, 
     dialog: false,
     }),
   methods: {
-    editTask(task){
-      console.log("vai id pra editar", task)
+    editTask() {
+      this.dialog = false
+      this.$emit("editarTask", {
+        title: this.title,
+      })
+      this.title = ""
     },
     deleteTask() {
       this.$emit("removeTask", {
